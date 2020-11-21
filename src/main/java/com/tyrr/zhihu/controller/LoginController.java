@@ -30,6 +30,11 @@ public class LoginController extends BaseController {
         }else {
             return new ModelAndView("login.html","msg","用户密码错误");
         }
+    }
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpSession session){
+        userService.logout(session);
+        return new  ModelAndView("redirect:/");
 
     }
 }

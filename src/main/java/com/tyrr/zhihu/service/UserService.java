@@ -5,6 +5,7 @@ import com.tyrr.zhihu.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,9 +26,13 @@ public class UserService {
         }
 
     }
+
     public User findByTel(String telephone){
 
         return userRepository.findByTelephone(telephone);
+    }
 
+    public void logout(HttpSession session){
+        session.removeAttribute("__user__");
     }
 }

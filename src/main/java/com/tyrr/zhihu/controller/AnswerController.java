@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class AnswerController extends BaseController{
 
-    @PostMapping(value = "/add_answer",produces="application/json")
+    @PostMapping(value = "/add_answer",produces = "application/json")
     public ModelAndView add_answer(HttpSession session, @RequestParam("content") String content,
                                    @RequestParam("question_id") Integer question_id){
         answerService.add_answer(session,content,question_id);
