@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}详情-{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/detail.css">
+{% endblock %}
+
+{% block main %}
+    <h3 class="page-title">{{ question.text}}</h3>
+    <p class="question-info">
+        <span>作者：{{ question.user.username }}</span>
+        <span>时间：{{ question.createtime }}</span>
+        <br>
+        {% if (user != null) %}
+            {% if (user.level == '1') or user.username == question.user.username %}
+                <span><a href="/delete_question/{{question.id}}">删除问题</a></span>
+                <span><a href="/update_question/{{question.id}}">修改问题</a></span>
+            {% endif %}
+        {% endif %}
+    </p>
+    <hr>
+    <p class="question-content">{{ question.content }}</p>
+    <hr>
+    <h4>评论：（0）</h4>
+    <form action="/add_answer" method="post">
+        <div class="form-group">
+            <input name="content" type="text" class="form-control" placeholder="请填写评论">
+            <input type="hidden" name="question_id" value="{{ question.id }}">
+        </div>
+        <div class="form-group" style="text-align: right;">
+            <button class="btn btn-primary">立即评论</button>
+        </div>
+    </form>
+    <ul class="answer-list">
+        {% for answer in answers %}
+            <li>
+                <div class="user-info">
+                    <img src="/static/images/zhihu.png" alt="" class="avatar">
+                    <span class="username">{{ answer.user.username}}</span>
+                    <span class="create-time">{{ answer.createtime }}</span>
+                    <br>
+                    {% if (user != null) %}
+                         {% if (user.level == '1' or user.username == answer.user.username) %}
+                            <span class="delete_answer"><a href="/delete_answer/{{answer.id}}">删除评论</a></span>
+                            <span class="delete_answer"><a href="/update_answer/{{answer.id}}">修改评论</a></span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <p class="answer-content">{{ answer.content }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

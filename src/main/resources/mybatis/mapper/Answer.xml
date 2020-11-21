@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tyrr.mybatis.mapper.EmployeeMapper">
+   <!--    public Employee getEmpById(Integer id);
+
+    public void insertEmp(Employee employee);-->
+<!--    <select id="getById" resultType="com.tyrr.zhihu.entity.Answer>-->
+<!--        SELECT * FROM Answer WHERE id=#{id}-->
+<!--    </select>-->
+<!--    -->
+<!--    <insert id="insertEmp">-->
+<!--        INSERT INTO employee(lastName,email,gender,d_id) VALUES (#{lastName},#{email},#{gender},#{dId})-->
+<!--    </insert>-->
+<!--    <update id="updateEmp">-->
+<!--        UPDATE employee SET lastName=#{lastName} WHERE id = #{id}-->
+<!--    </update>-->
+</mapper>
