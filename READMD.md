@@ -25,4 +25,4 @@ spring:
 
 ## 平台示例如下：
 
-![image-20201121232826767](C:\Users\tyrr\AppData\Roaming\Typora\typora-user-images\image-20201121232826767.png)
+![知乎1](images/知乎平台示例1.png)
