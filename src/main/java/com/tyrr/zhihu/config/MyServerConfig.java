@@ -15,7 +15,7 @@ public class MyServerConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration interceptorRegistration = registry.addInterceptor(new LoginHandlerInterceptor());
         interceptorRegistration.addPathPatterns("/**");// /**标识拦截所有
-        interceptorRegistration.excludePathPatterns(List.of("/","/detail/*","/login","/regist"));
+        interceptorRegistration.excludePathPatterns(List.of("/","/detail/*","/login","/regist","/static/**"));
     }
 
 }

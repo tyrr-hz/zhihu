@@ -8,7 +8,7 @@ import com.tyrr.zhihu.repository.QuestionRepository;
 import com.tyrr.zhihu.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
@@ -35,10 +35,8 @@ public class AnswerService {
         answer.setCreatetime(date);
         answerRepository.save(answer);
     }
-    public List<Answer> findAllAnswer(Question question){
-        List<Answer> answers = answerRepository.findAllByQuestion(question);
-        return answers;
-    }
+
+
     public int delete_answer(Integer id){
         Answer answer = answerRepository.getOne(id);
         Question question = answer.getQuestion();
@@ -48,6 +46,7 @@ public class AnswerService {
     public Answer getAnswer(Integer id){
         return answerRepository.getOne(id);
     }
+
     public Integer updateAnswer(Integer id,String content){
         Answer answer = answerRepository.getOne(id);
         answer.setContent(content);

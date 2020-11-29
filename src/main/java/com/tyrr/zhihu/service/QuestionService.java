@@ -7,13 +7,17 @@ import com.tyrr.zhihu.repository.AnswerRepository;
 import com.tyrr.zhihu.repository.QuestionRepository;
 import com.tyrr.zhihu.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
+@CacheConfig(cacheNames = "question")
 @Service
 public class QuestionService {
     @Autowired
@@ -23,15 +27,23 @@ public class QuestionService {
     @Autowired
     UserRepository userRepository;
 
+    @Cacheable(key = "#id")
     public Question getQuestionById(int id){
         Question question = questionRepository.getOne(id);
         return question;
+    }
+
+    public List<Answer> findAllAnswer(Question question){
+        List<Answer> answers = answerRepository.findAllByQuestion(question);
+        return answers;
     }
 
     public List<Question> findAllQuestionn(){
         List<Question> all = questionRepository.findAll();
         return all;
     }
+
+
     public void add_qusetion(HttpSession session, String text,String content){
         User user = (User) session.getAttribute("__user__");
         Question question = new Question();
@@ -44,6 +56,7 @@ public class QuestionService {
         questionRepository.save(question);
     }
 
+    @CacheEvict(key = "#id")
     public void delete_question(Integer id){
         Question one = questionRepository.getOne(id);
         List<Answer> allByQuestion = answerRepository.findAllByQuestion(one);
@@ -51,6 +64,7 @@ public class QuestionService {
         questionRepository.delete(one);
     }
 
+    @CachePut(key = "#id")
     public Question update_question(Integer id, String text,String content){
         Question question = questionRepository.getOne(id);
         question.setText(text);

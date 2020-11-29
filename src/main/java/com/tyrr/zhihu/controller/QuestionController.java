@@ -20,7 +20,7 @@ public class QuestionController extends BaseController{
     @GetMapping("/detail/{question_id}")
     public ModelAndView detail(@PathVariable("question_id") Integer question_id,HttpSession session){
         Question question = questionService.getQuestionById(question_id);
-        List<Answer> answers = answerService.findAllAnswer(question);
+        List<Answer> answers = questionService.findAllAnswer(question);
         return new ModelAndView("detail.html", Map.of("question", question, "answers", answers));
 
     }

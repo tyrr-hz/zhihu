@@ -12,6 +12,8 @@ spring:
     # 控制台显示SQL
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  redis:
+    host: localhost
 pebble:
   suffix:
   cache: false

@@ -2,9 +2,8 @@ package com.tyrr.zhihu.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
 import javax.persistence.*;
-import java.util.Date;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity(name = "answer")
